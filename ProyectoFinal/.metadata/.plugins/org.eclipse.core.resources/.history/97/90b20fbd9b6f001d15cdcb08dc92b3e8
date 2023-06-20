@@ -1,0 +1,383 @@
+package ProductosAnimales;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import Arreglos.ArregloConfiguracion;
+import Clases.Config;
+
+import java.awt.Toolkit;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.Color;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class ProductosConejos extends JFrame implements ActionListener{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField txtBalancinConejos;
+	private JTextField txtPelotasConejos;
+	private JTextField txtTuboHenoConejos;
+	private JTextField txtTuboConejos;
+	private JButton btnA1;
+	private JButton btnA2;
+	private JButton btnA3;
+	private JButton btnA4;
+	public static int estado=0;
+	public static float totalprConejos1;
+	public static float totalprConejos2;
+	public static float totalprConejos3;
+	public static float totalprConejos4;
+	public static int cantPr1;
+	public static int cantPr2;
+	public static int cantPr3;
+	public static int cantPr4;
+	public static boolean valorpr1 = false;
+	public static boolean valorpr2 = false;
+	public static boolean valorpr3 = false;
+	public static boolean valorpr4 = false;
+	private JTextField txtPrecio;
+	private JTextField txtPrecio1;
+	private JTextField txtPrecio2;
+	private JTextField txtPrecio3;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ProductosConejos frame = new ProductosConejos();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public ProductosConejos() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ProductosConejos.class.getResource("/iconos16/conejos.png")));
+		setTitle("Productos para conejos");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 691, 634);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		setLocationRelativeTo(null);
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(ProductosConejos.class.getResource("/imagenes/conejos/balancin.jpg")));
+		label.setBounds(10, 11, 231, 190);
+		contentPane.add(label);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon(ProductosConejos.class.getResource("/imagenes/conejos/pelotas para conejos.jpg")));
+		label_1.setBounds(415, 11, 250, 190);
+		contentPane.add(label_1);
+		
+		JLabel label_2 = new JLabel("");
+		label_2.setIcon(new ImageIcon(ProductosConejos.class.getResource("/imagenes/conejos/tubo de heno.jpg")));
+		label_2.setBounds(10, 297, 231, 196);
+		contentPane.add(label_2);
+		
+		JLabel label_3 = new JLabel("");
+		label_3.setIcon(new ImageIcon(ProductosConejos.class.getResource("/imagenes/conejos/tuneles.jpg")));
+		label_3.setBounds(415, 297, 250, 196);
+		contentPane.add(label_3);
+		
+		JLabel lblBalancinParaConejos = new JLabel("Balancin para conejos");
+		lblBalancinParaConejos.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblBalancinParaConejos.setBounds(20, 212, 170, 22);
+		contentPane.add(lblBalancinParaConejos);
+		
+		JLabel label_6 = new JLabel("Precio:");
+		label_6.setForeground(Color.RED);
+		label_6.setFont(new Font("Tahoma", Font.BOLD, 13));
+		label_6.setBounds(155, 233, 52, 22);
+		contentPane.add(label_6);
+		
+		txtBalancinConejos = new JTextField();
+		txtBalancinConejos.setColumns(10);
+		txtBalancinConejos.setBounds(188, 266, 86, 20);
+		contentPane.add(txtBalancinConejos);
+		
+		JLabel label_7 = new JLabel("Cant.");
+		label_7.setBounds(155, 272, 46, 14);
+		contentPane.add(label_7);
+		
+		txtPelotasConejos = new JTextField();
+		txtPelotasConejos.setColumns(10);
+		txtPelotasConejos.setBounds(579, 266, 86, 20);
+		contentPane.add(txtPelotasConejos);
+		
+		JLabel label_5 = new JLabel("Precio:");
+		label_5.setForeground(Color.RED);
+		label_5.setFont(new Font("Tahoma", Font.BOLD, 13));
+		label_5.setBounds(546, 233, 52, 22);
+		contentPane.add(label_5);
+		
+		JLabel label_8 = new JLabel("Cant.");
+		label_8.setBounds(546, 272, 46, 14);
+		contentPane.add(label_8);
+		
+		JLabel lblPelotasParaConejos = new JLabel("Pelotas para conejos");
+		lblPelotasParaConejos.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblPelotasParaConejos.setBounds(411, 212, 170, 22);
+		contentPane.add(lblPelotasParaConejos);
+		
+		txtTuboHenoConejos = new JTextField();
+		txtTuboHenoConejos.setColumns(10);
+		txtTuboHenoConejos.setBounds(183, 546, 86, 20);
+		contentPane.add(txtTuboHenoConejos);
+		
+		JLabel label_9 = new JLabel("Precio:");
+		label_9.setForeground(Color.RED);
+		label_9.setFont(new Font("Tahoma", Font.BOLD, 13));
+		label_9.setBounds(150, 513, 52, 22);
+		contentPane.add(label_9);
+		
+		JLabel label_10 = new JLabel("Cant.");
+		label_10.setBounds(150, 552, 46, 14);
+		contentPane.add(label_10);
+		
+		JLabel lblTuboDeHeno = new JLabel("Tubo de heno");
+		lblTuboDeHeno.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblTuboDeHeno.setBounds(15, 492, 170, 22);
+		contentPane.add(lblTuboDeHeno);
+		
+		txtTuboConejos = new JTextField();
+		txtTuboConejos.setColumns(10);
+		txtTuboConejos.setBounds(579, 558, 86, 20);
+		contentPane.add(txtTuboConejos);
+		
+		JLabel label_11 = new JLabel("Precio:");
+		label_11.setForeground(Color.RED);
+		label_11.setFont(new Font("Tahoma", Font.BOLD, 13));
+		label_11.setBounds(546, 525, 52, 22);
+		contentPane.add(label_11);
+		
+		JLabel label_12 = new JLabel("Cant.");
+		label_12.setBounds(546, 564, 46, 14);
+		contentPane.add(label_12);
+		
+		JLabel lblTuboParaConejos = new JLabel("Tubo para conejos");
+		lblTuboParaConejos.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblTuboParaConejos.setBounds(411, 504, 170, 22);
+		contentPane.add(lblTuboParaConejos);
+		
+		txtPrecio = new JTextField();
+		txtPrecio.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtPrecio.setBounds(201, 235, 61, 20);
+		contentPane.add(txtPrecio);
+		txtPrecio.setColumns(10);
+		
+		txtPrecio1 = new JTextField();
+		txtPrecio1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtPrecio1.setColumns(10);
+		txtPrecio1.setBounds(604, 235, 61, 20);
+		contentPane.add(txtPrecio1);
+		
+		txtPrecio2 = new JTextField();
+		txtPrecio2.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtPrecio2.setColumns(10);
+		txtPrecio2.setBounds(201, 515, 61, 20);
+		contentPane.add(txtPrecio2);
+		
+		txtPrecio3 = new JTextField();
+		txtPrecio3.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtPrecio3.setColumns(10);
+		txtPrecio3.setBounds(604, 527, 61, 20);
+		contentPane.add(txtPrecio3);
+		
+		btnA1 = new JButton("A\u00F1adir al carrito");
+		btnA1.addActionListener(this);
+		btnA1.setBackground(Color.GREEN);
+		btnA1.setBounds(10, 263, 135, 23);
+		contentPane.add(btnA1);
+		
+		btnA2 = new JButton("A\u00F1adir al carrito");
+		btnA2.addActionListener(this);
+		btnA2.setBackground(Color.GREEN);
+		btnA2.setBounds(401, 263, 135, 23);
+		contentPane.add(btnA2);
+		
+		btnA3 = new JButton("A\u00F1adir al carrito");
+		btnA3.addActionListener(this);
+		btnA3.setBackground(Color.GREEN);
+		btnA3.setBounds(5, 543, 135, 23);
+		contentPane.add(btnA3);
+		
+		btnA4 = new JButton("A\u00F1adir al carrito");
+		btnA4.addActionListener(this);
+		btnA4.setBackground(Color.GREEN);
+		btnA4.setBounds(401, 555, 135, 23);
+		contentPane.add(btnA4);
+		
+		setResizable(false);
+		this.setLocationRelativeTo(null);
+	}
+	
+	ArregloConfiguracion ac = new ArregloConfiguracion();
+	Config c;
+	
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == btnA1) {
+			actionEventPerformedbtnA1(e);
+		}
+		if(e.getSource() == btnA2) {
+			actionEventPerformedbtnA2(e);
+		}
+		if(e.getSource() == btnA3) {
+			actionEventPerformedbtnA3(e);
+		}
+		if(e.getSource() == btnA4) {
+			actionEventPerformedbtnA4(e);
+		}
+	}
+	protected void actionEventPerformedbtnA1(ActionEvent arg0){
+		if(txtBalancinConejos.getText().matches("[0-9]{1,3}")) {
+			c = ac.obtener(12);
+			cantPr1 = Integer.parseInt(txtBalancinConejos.getText().trim());
+			if(cantPr1 < c.getCantPr()){
+				valorpr1 = true;
+				if(valorpr1 == true) {
+					totalprConejos1 = c.getPrecioPr() * cantPr1;
+					c.setCantPr(c.getCantPr() - cantPr1);
+					ac.actualizarArchivo();
+					estado=4;
+				}
+			}
+			else {
+				error("No hay tantos productos en stock", txtBalancinConejos);
+			}
+			if(valorpr1 == false) {
+				totalprConejos1 = 0;
+			}
+		}
+		else {
+			error("Ingresa la cantidad correctamente", txtBalancinConejos);
+		}
+		
+	}
+	protected void actionEventPerformedbtnA2(ActionEvent arg0) {
+		if(txtPelotasConejos.getText().matches("[0-9]{1,3}")) {
+			c = ac.obtener(13);
+			cantPr2 = Integer.parseInt(txtPelotasConejos.getText().trim());
+			if(cantPr2 < c.getCantPr()){
+				valorpr2 = true;
+				if(valorpr2 == true) {
+					totalprConejos2 = c.getPrecioPr() * cantPr2;
+					c.setCantPr(c.getCantPr() - cantPr2);
+					ac.actualizarArchivo();
+					estado=4;
+				}
+			}
+			else {
+				error("No hay tantos productos en stock", txtPelotasConejos);
+			}
+			if(valorpr2 == false) {
+				totalprConejos2 = 0;
+			}
+		}
+		else {
+			error("Ingresa la cantidad correctamente", txtPelotasConejos);
+		}
+		
+	}
+	protected void actionEventPerformedbtnA3(ActionEvent arg0) {
+		if(txtTroncoFlotantePeces.getText().matches("[0-9]{1,3}")) {
+			c = ac.obtener(10);
+			cantPr3 = Integer.parseInt(txtTroncoFlotantePeces.getText().trim());
+			if(cantPr3 < c.getCantPr()){
+				valorpr3 = true;
+				if(valorpr3 == true) {
+					totalprPeces3 = c.getPrecioPr() * cantPr3;
+					c.setCantPr(c.getCantPr() - cantPr3);
+					ac.actualizarArchivo();
+					estado=3;
+				}
+			}
+			else {
+				error("No hay tantos productos en stock", txtTroncoFlotantePeces);
+			}
+			if(valorpr3 == false) {
+				totalprPeces3 = 0;
+			}
+		}
+		else {
+			error("Ingresa la cantidad correctamentes", txtTroncoFlotantePeces);
+		}
+	}
+	protected void actionEventPerformedbtnA4(ActionEvent arg0) {
+		if(txtTroncoHundidoPeces.getText().matches("[0-9]{1,3}")) {
+			c = ac.obtener(11);
+			cantPr4 = Integer.parseInt(txtTroncoHundidoPeces.getText().trim());
+			if(cantPr4 < c.getCantPr()){
+				valorpr4 = true;
+				if(valorpr4 == true) {
+					totalprPeces4 = c.getPrecioPr() * cantPr4;
+					c.setCantPr(c.getCantPr() - cantPr4);
+					ac.actualizarArchivo();
+					estado=2;
+				}
+			}
+			else {
+				error("No hay tantos productos en stock", txtTroncoHundidoPeces);
+			}
+			if(valorpr4 == false) {
+				totalprPeces4 = 0;
+			}
+		}
+		else {
+			error("Ingresa la cantidad correctamentes", txtTroncoHundidoPeces);
+		}
+	}
+	void precio() {
+		txtPrecio.setEditable(false);
+		txtPrecio1.setEditable(false);
+		txtPrecio2.setEditable(false);
+		txtPrecio3.setEditable(false);
+		
+		for(int i=12; i<16;i++) {
+			c = ac.obtener(i);
+			if(i==12) {
+				txtPrecio.setText("S/. "+c.getPrecioPr());
+			}
+			if(i==13) {
+				txtPrecio1.setText("S/. "+c.getPrecioPr());
+			}
+			if(i==14) {
+				txtPrecio2.setText("S/. "+c.getPrecioPr());
+			}
+			if(i==15) {
+				txtPrecio3.setText("S/. "+c.getPrecioPr());
+			}	
+		}
+	}
+
+	void error(String s, JTextField txt) {
+		mensaje(s);
+		txt.setText("");
+		txt.requestFocus();
+	}
+	void mensaje(String s) {
+		JOptionPane.showMessageDialog(this, s, "Informacion", 0);
+	}
+}

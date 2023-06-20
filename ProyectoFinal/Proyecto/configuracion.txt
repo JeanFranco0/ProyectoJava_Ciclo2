@@ -1,0 +1,28 @@
+101;Cama para Perro;45;400
+102;Cuerde de juguete para Perro;15;450
+103;Discos voladores para Perro;25;262
+104;Pelotas de tenis;20;363
+105;Cama para Gatos;82;209
+106;Caña para Gatos;30;249
+107;Pelotas para Gatos;10;266
+108;Ratones de peluche para gatos;25;305
+109;Bola de musgo para Peces;12;373
+110;Plantas de decoracion para Peces;15;388
+111;Tronco flotante para Peces;14;374
+112;Tronco hundido para Peces;12;271
+113;Balancin para Conejos;22;291
+114;Pelotas para Conejos;27;450
+115;Tubo de heno para Conejos;13;360
+116;Tubo para Conejos;42;352
+117;Bola de ejercicio para Roedores;70;238
+118;Cajas de arena para Roedores;25;185
+119;Rueda para hamster(Roedores);30;263
+120;Tuneles para hamster(Roedores);12;273
+121;Canicas gigantes para Reptiles;13;282
+122;Pelotas de goma para Reptiles;10;386
+123;Pelotas de hule para Reptiles;15;250
+124;Peluches tortuga(Reptiles);25;350
+125;Colgantes para Pajaros;23;290
+126;Columpio para Pajaros;25;303
+127;Escaleras para Pajaros;26;300
+128;Hamaca para Pajaros;60;338

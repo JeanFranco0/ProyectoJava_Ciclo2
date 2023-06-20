@@ -1,0 +1,289 @@
+package ProductosAnimales;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Toolkit;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class ProductosConejos extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField txtBalancinConejos;
+	private JTextField txtPelotasConejos;
+	private JTextField txtTuboHenoConejos;
+	private JTextField txtTuboConejos;
+	public static float prConejos1 =22;
+	public static float prConejos2 =27;
+	public static float prConejos3 = 13;
+	public static float prConejos4 = 42;
+	public static float totalprConejos1;
+	public static float totalprConejos2;
+	public static float totalprConejos3;
+	public static float totalprConejos4;
+	public static String cantPr1;
+	public static String cantPr2;
+	public static String cantPr3;
+	public static String cantPr4;
+	public static boolean valorpr1 = false;
+	public static boolean valorpr2 = false;
+	public static boolean valorpr3 = false;
+	public static boolean valorpr4 = false;
+	private JTextField txtPrecio;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ProductosConejos frame = new ProductosConejos();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public ProductosConejos() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ProductosConejos.class.getResource("/iconos16/conejos.png")));
+		setTitle("Productos para conejos");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 691, 634);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		setLocationRelativeTo(null);
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(ProductosConejos.class.getResource("/imagenes/conejos/balancin.jpg")));
+		label.setBounds(10, 11, 231, 190);
+		contentPane.add(label);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon(ProductosConejos.class.getResource("/imagenes/conejos/pelotas para conejos.jpg")));
+		label_1.setBounds(415, 11, 250, 190);
+		contentPane.add(label_1);
+		
+		JLabel label_2 = new JLabel("");
+		label_2.setIcon(new ImageIcon(ProductosConejos.class.getResource("/imagenes/conejos/tubo de heno.jpg")));
+		label_2.setBounds(10, 297, 231, 196);
+		contentPane.add(label_2);
+		
+		JLabel label_3 = new JLabel("");
+		label_3.setIcon(new ImageIcon(ProductosConejos.class.getResource("/imagenes/conejos/tuneles.jpg")));
+		label_3.setBounds(415, 297, 250, 196);
+		contentPane.add(label_3);
+		
+		JLabel lblBalancinParaConejos = new JLabel("Balancin para conejos");
+		lblBalancinParaConejos.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblBalancinParaConejos.setBounds(20, 212, 170, 22);
+		contentPane.add(lblBalancinParaConejos);
+		
+		JLabel label_6 = new JLabel("Precio:");
+		label_6.setForeground(Color.RED);
+		label_6.setFont(new Font("Tahoma", Font.BOLD, 13));
+		label_6.setBounds(155, 233, 52, 22);
+		contentPane.add(label_6);
+		
+		txtBalancinConejos = new JTextField();
+		txtBalancinConejos.setColumns(10);
+		txtBalancinConejos.setBounds(188, 266, 86, 20);
+		contentPane.add(txtBalancinConejos);
+		
+		JLabel label_7 = new JLabel("Cant.");
+		label_7.setBounds(155, 272, 46, 14);
+		contentPane.add(label_7);
+		
+		JButton btnA1 = new JButton("A\u00F1adir al carrito");
+		btnA1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				prConejos1();
+			}
+		});
+		btnA1.setBackground(Color.GREEN);
+		btnA1.setBounds(10, 263, 135, 23);
+		contentPane.add(btnA1);
+		
+		txtPelotasConejos = new JTextField();
+		txtPelotasConejos.setColumns(10);
+		txtPelotasConejos.setBounds(579, 266, 86, 20);
+		contentPane.add(txtPelotasConejos);
+		
+		JLabel lblS_1 = new JLabel("S/.  27.00");
+		lblS_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblS_1.setBounds(597, 233, 68, 22);
+		contentPane.add(lblS_1);
+		
+		JLabel label_5 = new JLabel("Precio:");
+		label_5.setForeground(Color.RED);
+		label_5.setFont(new Font("Tahoma", Font.BOLD, 13));
+		label_5.setBounds(546, 233, 52, 22);
+		contentPane.add(label_5);
+		
+		JLabel label_8 = new JLabel("Cant.");
+		label_8.setBounds(546, 272, 46, 14);
+		contentPane.add(label_8);
+		
+		JButton btnA2 = new JButton("A\u00F1adir al carrito");
+		btnA2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				prConejos2();
+			}
+		});
+		btnA2.setBackground(Color.GREEN);
+		btnA2.setBounds(401, 263, 135, 23);
+		contentPane.add(btnA2);
+		
+		JLabel lblPelotasParaConejos = new JLabel("Pelotas para conejos");
+		lblPelotasParaConejos.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblPelotasParaConejos.setBounds(411, 212, 170, 22);
+		contentPane.add(lblPelotasParaConejos);
+		
+		txtTuboHenoConejos = new JTextField();
+		txtTuboHenoConejos.setColumns(10);
+		txtTuboHenoConejos.setBounds(183, 546, 86, 20);
+		contentPane.add(txtTuboHenoConejos);
+		
+		JLabel lblS_2 = new JLabel("S/.  13.00");
+		lblS_2.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblS_2.setBounds(201, 513, 73, 22);
+		contentPane.add(lblS_2);
+		
+		JLabel label_9 = new JLabel("Precio:");
+		label_9.setForeground(Color.RED);
+		label_9.setFont(new Font("Tahoma", Font.BOLD, 13));
+		label_9.setBounds(150, 513, 52, 22);
+		contentPane.add(label_9);
+		
+		JLabel label_10 = new JLabel("Cant.");
+		label_10.setBounds(150, 552, 46, 14);
+		contentPane.add(label_10);
+		
+		JButton btnA3 = new JButton("A\u00F1adir al carrito");
+		btnA3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				prConejos3();
+			}
+		});
+		btnA3.setBackground(Color.GREEN);
+		btnA3.setBounds(5, 543, 135, 23);
+		contentPane.add(btnA3);
+		
+		JLabel lblTuboDeHeno = new JLabel("Tubo de heno");
+		lblTuboDeHeno.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblTuboDeHeno.setBounds(15, 492, 170, 22);
+		contentPane.add(lblTuboDeHeno);
+		
+		txtTuboConejos = new JTextField();
+		txtTuboConejos.setColumns(10);
+		txtTuboConejos.setBounds(579, 558, 86, 20);
+		contentPane.add(txtTuboConejos);
+		
+		JLabel lblS_3 = new JLabel("S/.  42.00");
+		lblS_3.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblS_3.setBounds(597, 525, 68, 22);
+		contentPane.add(lblS_3);
+		
+		JLabel label_11 = new JLabel("Precio:");
+		label_11.setForeground(Color.RED);
+		label_11.setFont(new Font("Tahoma", Font.BOLD, 13));
+		label_11.setBounds(546, 525, 52, 22);
+		contentPane.add(label_11);
+		
+		JLabel label_12 = new JLabel("Cant.");
+		label_12.setBounds(546, 564, 46, 14);
+		contentPane.add(label_12);
+		
+		JButton btnA4 = new JButton("A\u00F1adir al carrito");
+		btnA4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				prConejos4();
+			}
+		});
+		btnA4.setBackground(Color.GREEN);
+		btnA4.setBounds(401, 555, 135, 23);
+		contentPane.add(btnA4);
+		
+		JLabel lblTuboParaConejos = new JLabel("Tubo para conejos");
+		lblTuboParaConejos.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblTuboParaConejos.setBounds(411, 504, 170, 22);
+		contentPane.add(lblTuboParaConejos);
+		
+		txtPrecio = new JTextField();
+		txtPrecio.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtPrecio.setBounds(201, 235, 61, 20);
+		contentPane.add(txtPrecio);
+		txtPrecio.setColumns(10);
+		
+		setResizable(false);
+		this.setLocationRelativeTo(null);
+	}
+	void prConejos1(){
+		cantPr1 = txtBalancinConejos.getText();
+		if((cantPr1.matches("[0-9]{1,2}"))){
+			valorpr1 = true;
+			if(valorpr1 == true){
+				totalprConejos1 = prConejos1 * Float.parseFloat(cantPr1);
+			}
+		}
+		else{
+			 JOptionPane.showMessageDialog(null, "Coloca la cantidad correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	void prConejos2(){
+		cantPr2 = txtPelotasConejos.getText();
+		if((cantPr2.matches("[0-9]{1,2}"))){
+			valorpr2 = true;
+			if(valorpr2 == true){
+				totalprConejos2 = prConejos2 * Float.parseFloat(cantPr2);
+			}
+		}
+		else{
+			 JOptionPane.showMessageDialog(null, "Coloca la cantidad correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	void prConejos3(){
+		cantPr3 = txtTuboHenoConejos.getText();
+		if((cantPr3.matches("[0-9]{1,2}"))){
+			valorpr3 = true;
+			if(valorpr3 == true){
+				totalprConejos3 = prConejos3 * Float.parseFloat(cantPr3);
+			}
+		}
+		else{
+			 JOptionPane.showMessageDialog(null, "Coloca la cantidad correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	void prConejos4(){
+		cantPr4 = txtTuboConejos.getText();
+		if((cantPr4.matches("[0-9]{1,2}"))){
+			valorpr4 = true;
+			if(valorpr4 == true){
+				totalprConejos4 = prConejos4 * Float.parseFloat(cantPr4);
+			}
+		}
+		else{
+			 JOptionPane.showMessageDialog(null, "Coloca la cantidad correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+}

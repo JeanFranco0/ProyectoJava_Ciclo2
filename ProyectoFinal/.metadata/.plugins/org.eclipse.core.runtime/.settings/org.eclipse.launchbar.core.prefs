@@ -1,0 +1,11 @@
+LaunchTargetManager/configs/Carrito=org.eclipse.launchbar.core.launchTargetType.local\:Local
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
+LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
+configDescList=org.eclipse.launchbar.core.descriptorType.default\:Clientes,org.eclipse.launchbar.core.descriptorType.default\:DlgClientes,org.eclipse.launchbar.core.descriptorType.default\:Descuento,org.eclipse.launchbar.core.descriptorType.default\:ProductosPerros,org.eclipse.launchbar.core.descriptorType.default\:ProductosGatos,org.eclipse.launchbar.core.descriptorType.default\:ProductosPeces,org.eclipse.launchbar.core.descriptorType.default\:ProductosConejos,org.eclipse.launchbar.core.descriptorType.default\:ProductosRoedores,org.eclipse.launchbar.core.descriptorType.default\:ProductosReptiles,org.eclipse.launchbar.core.descriptorType.default\:ProductosPajaros,org.eclipse.launchbar.core.descriptorType.default\:Carrito,org.eclipse.launchbar.core.descriptorType.default\:Productos,org.eclipse.launchbar.core.descriptorType.default\:Productos2,org.eclipse.launchbar.core.descriptorType.default\:Productos3,org.eclipse.launchbar.core.descriptorType.default\:Configuracion,org.eclipse.launchbar.core.descriptorType.default\:IniciarSesion,org.eclipse.launchbar.core.descriptorType.default\:inicio
+eclipse.preferences.version=1
+org.eclipse.launchbar.core.descriptorType.default\:Carrito/activeLaunchMode=coverage
+org.eclipse.launchbar.core.descriptorType.default\:Carrito/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
+org.eclipse.launchbar.core.descriptorType.default\:Clientes/activeLaunchMode=run
+org.eclipse.launchbar.core.descriptorType.default\:Clientes/activeLaunchTarget=org.eclipse.launchbar.core.launchTargetType.local\:Local
+org.eclipse.launchbar.core.descriptorType.default\:inicio/activeLaunchMode=run

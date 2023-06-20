@@ -1,0 +1,295 @@
+package ProductosAnimales;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import Arreglos.ArregloConfiguracion;
+import Clases.Config;
+
+import java.awt.Toolkit;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.Color;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class ProductosPajaros extends JFrame implements ActionListener{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField txtColgantesPajaros;
+	private JTextField txtColumpiosPajaros;
+	private JTextField txtEscalerasPajaros;
+	private JTextField txtHamacasPajaros;
+	public static int estado = 0;
+	public static float totalprPajaro1;
+	public static float totalprPajaro2;
+	public static float totalprPajaro3;
+	public static float totalprPajaro4;
+	public static int cantPr1;
+	public static int cantPr2;
+	public static int cantPr3;
+	public static int cantPr4;
+	public static boolean valorpr1 = false;
+	public static boolean valorpr2 = false;
+	public static boolean valorpr3 = false;
+	public static boolean valorpr4 = false;
+	private JTextField txtPrecio;
+	private JTextField txtPrecio1;
+	private JTextField txtPrecio2;
+	private JTextField txtPrecio3;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ProductosPajaros frame = new ProductosPajaros();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public ProductosPajaros() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ProductosPajaros.class.getResource("/iconos16/pajaro.png")));
+		setTitle("Productos para pajaros");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 640, 672);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(ProductosPajaros.class.getResource("/imagenes/pajaros/colgante.jpg")));
+		label.setBounds(10, 11, 250, 240);
+		contentPane.add(label);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon(ProductosPajaros.class.getResource("/imagenes/pajaros/columpio.jpg")));
+		label_1.setBounds(364, 11, 250, 240);
+		contentPane.add(label_1);
+		
+		JLabel label_2 = new JLabel("");
+		label_2.setIcon(new ImageIcon(ProductosPajaros.class.getResource("/imagenes/pajaros/escaleras.jpg")));
+		label_2.setBounds(10, 327, 250, 223);
+		contentPane.add(label_2);
+		
+		JLabel label_3 = new JLabel("");
+		label_3.setIcon(new ImageIcon(ProductosPajaros.class.getResource("/imagenes/pajaros/hamaca.jpg")));
+		label_3.setBounds(364, 327, 250, 223);
+		contentPane.add(label_3);
+		
+		JLabel label_5 = new JLabel("Precio:");
+		label_5.setForeground(Color.RED);
+		label_5.setFont(new Font("Tahoma", Font.BOLD, 13));
+		label_5.setBounds(155, 262, 52, 22);
+		contentPane.add(label_5);
+		
+		txtColgantesPajaros = new JTextField();
+		txtColgantesPajaros.setColumns(10);
+		txtColgantesPajaros.setBounds(184, 295, 86, 20);
+		contentPane.add(txtColgantesPajaros);
+		
+		JLabel label_6 = new JLabel("Cant.");
+		label_6.setBounds(155, 297, 46, 14);
+		contentPane.add(label_6);
+		
+		JButton btnA1 = new JButton("A\u00F1adir al carrito");
+		btnA1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				prPajaro1();
+			}
+		});
+		btnA1.setBackground(Color.GREEN);
+		btnA1.setBounds(10, 293, 135, 23);
+		contentPane.add(btnA1);
+		
+		JLabel lblColumpios = new JLabel("Colgantes");
+		lblColumpios.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblColumpios.setBounds(15, 260, 170, 22);
+		contentPane.add(lblColumpios);
+		
+		JLabel label_7 = new JLabel("Precio:");
+		label_7.setForeground(Color.RED);
+		label_7.setFont(new Font("Tahoma", Font.BOLD, 13));
+		label_7.setBounds(495, 262, 52, 22);
+		contentPane.add(label_7);
+		
+		txtColumpiosPajaros = new JTextField();
+		txtColumpiosPajaros.setColumns(10);
+		txtColumpiosPajaros.setBounds(524, 295, 86, 20);
+		contentPane.add(txtColumpiosPajaros);
+		
+		JLabel label_8 = new JLabel("Cant.");
+		label_8.setBounds(495, 297, 46, 14);
+		contentPane.add(label_8);
+		
+		JButton btnA2 = new JButton("A\u00F1adir al carrito");
+		btnA2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				prPajaro2();
+			}
+		});
+		btnA2.setBackground(Color.GREEN);
+		btnA2.setBounds(350, 293, 135, 23);
+		contentPane.add(btnA2);
+		
+		JLabel lblColumpio = new JLabel("Columpio");
+		lblColumpio.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblColumpio.setBounds(355, 260, 170, 22);
+		contentPane.add(lblColumpio);
+		
+		JLabel label_9 = new JLabel("Precio:");
+		label_9.setForeground(Color.RED);
+		label_9.setFont(new Font("Tahoma", Font.BOLD, 13));
+		label_9.setBounds(155, 563, 52, 22);
+		contentPane.add(label_9);
+		
+		txtEscalerasPajaros = new JTextField();
+		txtEscalerasPajaros.setColumns(10);
+		txtEscalerasPajaros.setBounds(184, 596, 86, 20);
+		contentPane.add(txtEscalerasPajaros);
+		
+		JLabel label_10 = new JLabel("Cant.");
+		label_10.setBounds(155, 598, 46, 14);
+		contentPane.add(label_10);
+		
+		JButton btnA3 = new JButton("A\u00F1adir al carrito");
+		btnA3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				prPajaro3();
+			}
+		});
+		btnA3.setBackground(Color.GREEN);
+		btnA3.setBounds(10, 594, 135, 23);
+		contentPane.add(btnA3);
+		
+		JLabel lblEscaleras = new JLabel("Escaleras");
+		lblEscaleras.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblEscaleras.setBounds(15, 561, 170, 22);
+		contentPane.add(lblEscaleras);
+		
+		JLabel label_11 = new JLabel("Precio:");
+		label_11.setForeground(Color.RED);
+		label_11.setFont(new Font("Tahoma", Font.BOLD, 13));
+		label_11.setBounds(485, 562, 52, 22);
+		contentPane.add(label_11);
+		
+		txtHamacasPajaros = new JTextField();
+		txtHamacasPajaros.setColumns(10);
+		txtHamacasPajaros.setBounds(514, 595, 86, 20);
+		contentPane.add(txtHamacasPajaros);
+		
+		JLabel label_12 = new JLabel("Cant.");
+		label_12.setBounds(485, 597, 46, 14);
+		contentPane.add(label_12);
+		
+		JButton btnA4 = new JButton("A\u00F1adir al carrito");
+		btnA4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				prPajaro4();
+			}
+		});
+		btnA4.setBackground(Color.GREEN);
+		btnA4.setBounds(340, 593, 135, 23);
+		contentPane.add(btnA4);
+		
+		JLabel lblHamaca = new JLabel("Hamaca");
+		lblHamaca.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblHamaca.setBounds(345, 560, 170, 22);
+		contentPane.add(lblHamaca);
+		
+		txtPrecio = new JTextField();
+		txtPrecio.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtPrecio.setBounds(217, 264, 61, 20);
+		contentPane.add(txtPrecio);
+		txtPrecio.setColumns(10);
+		
+		txtPrecio1 = new JTextField();
+		txtPrecio1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtPrecio1.setColumns(10);
+		txtPrecio1.setBounds(553, 264, 61, 20);
+		contentPane.add(txtPrecio1);
+		
+		txtPrecio2 = new JTextField();
+		txtPrecio2.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtPrecio2.setColumns(10);
+		txtPrecio2.setBounds(209, 565, 61, 20);
+		contentPane.add(txtPrecio2);
+		
+		txtPrecio3 = new JTextField();
+		txtPrecio3.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtPrecio3.setColumns(10);
+		txtPrecio3.setBounds(547, 565, 61, 20);
+		contentPane.add(txtPrecio3);
+		
+		setResizable(false);
+		this.setLocationRelativeTo(null);
+	}
+	void prPajaro1(){
+		cantPr1 = txtColgantesPajaros.getText();
+		if((cantPr1.matches("[0-9]{1,2}"))){
+			valorpr1 = true;
+			if(valorpr1 == true){
+				totalprPajaro1 = prPajaro1 * Float.parseFloat(cantPr1);
+			}
+		}
+		else{
+			 JOptionPane.showMessageDialog(null, "Coloca la cantidad correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	void prPajaro2(){
+		cantPr2 = txtColumpiosPajaros.getText();
+		if((cantPr2.matches("[0-9]{1,2}"))){
+			valorpr2 = true;
+			if(valorpr2 == true){
+				totalprPajaro2 = prPajaro2 * Float.parseFloat(cantPr2);
+			}
+		}
+		else{
+			 JOptionPane.showMessageDialog(null, "Coloca la cantidad correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	void prPajaro3(){
+		cantPr3 = txtEscalerasPajaros.getText();
+		if((cantPr3.matches("[0-9]{1,2}"))){
+			valorpr3 = true;
+			if(valorpr3 == true){
+				totalprPajaro3 = prPajaro3 * Float.parseFloat(cantPr3);
+			}
+		}
+		else{
+			 JOptionPane.showMessageDialog(null, "Coloca la cantidad correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	void prPajaro4(){
+		cantPr4 = txtHamacasPajaros.getText();
+		if((cantPr4.matches("[0-9]{1,2}"))){
+			valorpr4 = true;
+			if(valorpr4 == true){
+				totalprPajaro4 = prPajaro4 * Float.parseFloat(cantPr4);
+			}
+		}
+		else{
+			 JOptionPane.showMessageDialog(null, "Coloca la cantidad correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+}

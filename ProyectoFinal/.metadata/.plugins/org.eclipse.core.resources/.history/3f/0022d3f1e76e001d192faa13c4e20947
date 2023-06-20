@@ -1,0 +1,331 @@
+package Carrito;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import Arreglos.ArregloConfiguracion;
+import Clases.Config;
+import Productos.Productos;
+import Productos.Productos2;
+import Productos.Productos3;
+import ProductosAnimales.ProductosConejos;
+import ProductosAnimales.ProductosGatos;
+import ProductosAnimales.ProductosPajaros;
+import ProductosAnimales.ProductosPeces;
+import ProductosAnimales.ProductosPerros;
+import ProductosAnimales.ProductosReptiles;
+import ProductosAnimales.ProductosRoedores;
+
+import java.awt.Toolkit;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTable;
+
+public class Carrito extends JFrame implements ActionListener{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField txtCodigoDesc;
+	private JButton btnAplicar;
+	private JButton btnGenerarFactura;
+	private JTextArea txtDescuento;
+	private JButton btnNuevoDesc;
+	private JButton btnLimpiar;
+	private JButton btnMostrarProductos;
+	private JTextArea txtCarrito;
+	private float descuento = 0;
+	private String codDesc;
+	private boolean valorTotal = false;
+	private float totalFinal=0;
+	private float totalpr =0, totalperro=0, totalgato=0, totalreptil=0, totalroedor=0, totalpez=0, totalpajaro=0, totalconejo=0, totalFinalD = 0,
+			totalFinalDescuento =0;
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Carrito frame = new Carrito();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Carrito() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Carrito.class.getResource("/iconos16/carrito.png")));
+		setTitle("Carrito");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 768, 582);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblCodDescuento = new JLabel("Cod. Descuento:");
+		lblCodDescuento.setBounds(10, 422, 93, 14);
+		contentPane.add(lblCodDescuento);
+		
+		txtCodigoDesc = new JTextField();
+		txtCodigoDesc.setBounds(103, 419, 101, 20);
+		contentPane.add(txtCodigoDesc);
+		txtCodigoDesc.setColumns(10);
+		
+		btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.setBounds(466, 479, 101, 27);
+		btnLimpiar.addActionListener(this);
+		/*
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				limpiar();
+			}
+		}); */
+		btnLimpiar.setBackground(Color.RED);
+		contentPane.add(btnLimpiar);
+		
+		btnAplicar = new JButton("Aplicar");
+		btnAplicar.setBounds(103, 447, 111, 23);
+		btnAplicar.addActionListener(this);
+		/*
+		btnAplicar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				descuento();
+			}
+		}); */
+		contentPane.add(btnAplicar);
+		
+		btnGenerarFactura = new JButton("Generar Total a Pagar");
+		btnGenerarFactura.setBounds(577, 480, 165, 25);
+		btnGenerarFactura.addActionListener(this);
+		/*
+		btnGenerarFactura.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				calculo();
+				//totalPagar();
+			}
+		}); */
+		btnGenerarFactura.setBackground(Color.GREEN);
+		contentPane.add(btnGenerarFactura);
+		
+		
+		txtDescuento = new JTextArea();
+		txtDescuento.setBounds(218, 417, 238, 38);
+		contentPane.add(txtDescuento);
+		txtDescuento.setText("El descuento es del: ");
+		
+		btnNuevoDesc = new JButton("Nuevo Desc.");
+		btnNuevoDesc.setBounds(103, 481, 111, 23);
+		btnNuevoDesc.addActionListener(this);
+		/*
+		btnNuevoDesc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nuevodesc();
+			}
+		}); */
+		contentPane.add(btnNuevoDesc);
+		
+		btnMostrarProductos = new JButton("Mostrar productos agregados");
+		btnMostrarProductos.setBounds(466, 418, 256, 23);
+		btnMostrarProductos.setBackground(Color.ORANGE);
+		btnMostrarProductos.addActionListener(this);
+		/*
+		btnMostrarProductos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {	
+				nuevo();
+			
+				productos1();
+				productos2();
+				productos3();
+				productosperro();
+				productosgato();
+				productospeces();
+				productosconejos();
+				productosroedores();
+				productosreptiles();
+				productospajaro(); 
+			}
+		}); */
+		
+		contentPane.add(btnMostrarProductos);
+		
+		JLabel lblElCodigoEs = new JLabel("El codigo de descuento es de 3 digitos que varia entre el 1-3.");
+		lblElCodigoEs.setBounds(0, 519, 367, 14);
+		contentPane.add(lblElCodigoEs);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 732, 388);
+		contentPane.add(scrollPane);
+		
+		txtCarrito = new JTextArea();
+		scrollPane.setViewportView(txtCarrito);
+		
+		txtCarrito.setText("     Id" + "\tNombre del producto" + "\t\t Precio" + "\t Cantidad" + "\t Total");
+		
+		setResizable(false);
+		this.setLocationRelativeTo(null);
+	}
+	
+	public void actionPerformed(ActionEvent arg0) {
+		if(arg0.getSource() == btnGenerarFactura) {
+			actionPerformedbtnGenerarFacutra(arg0);
+		}
+		if(arg0.getSource() == btnMostrarProductos){
+			actionPerformedbtnMostrarProductos(arg0);
+		}
+		if(arg0.getSource() == btnAplicar) {
+			actionPerformedbtnAplicar(arg0);
+		}
+		if(arg0.getSource() == btnNuevoDesc) {
+			actionPerformedbtnNuevoDesc(arg0);
+		}
+	}
+	
+	ArregloConfiguracion ac = new ArregloConfiguracion();
+	Config c;
+	ProductosPerros pr;
+	
+	protected void actionPerformedbtnMostrarProductos(ActionEvent arg0) {
+		listar();
+	}
+	protected void actionPerformedbtnGenerarFacutra(ActionEvent arg0) {
+		
+	}
+	protected void actionPerformedbtnAplicar(ActionEvent arg0) {
+		
+	}
+	protected void actionPerformedbtnNuevoDesc(ActionEvent arg0) {
+		
+	}
+	
+	void nuevo(){
+		
+	}
+	
+	void listar() {
+		if(pr.estado == 1) {
+			for(int i=0; i<4;i++) {
+				c= ac.obtener(i);
+				//int cant= pr.cantPr1;
+				if(i == 0) {
+					imprimir("\n");
+					imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-pr.cantPr1)) + "\t" + pr.totalprPerro1);
+				}
+				if(i == 1) {
+					imprimir("\n");
+					imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + c.getCantPr() + "\t" + pr.totalprPerro2);
+				}
+				if(i == 2) {
+					imprimir("\n");
+					imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + c.getCantPr() + "\t" + pr.totalprPerro3);
+				}
+				if(i == 3) {
+					imprimir("\n");
+					imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + c.getCantPr() + "\t" + pr.totalprPerro4);
+				}
+			}
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "No hay productos agregados", "ERROR",JOptionPane.ERROR_MESSAGE);
+		}
+		
+	}
+	void imprimir(String s) {
+		txtCarrito.append(s+"\n");
+	}
+	void imprimir() {
+		imprimir("");
+	}
+	void descuento(){	
+		codDesc = txtCodigoDesc.getText();
+		boolean valordesc= false;
+		
+		while(codDesc.matches("[1-3]{1,3}") && valordesc == false){
+			valordesc=true;
+			if(codDesc.contains("123")){
+				descuento = 0.10f;
+				txtDescuento.append(" " + (descuento*100) +"%");
+			}
+			else if(codDesc.contains("231")){
+				descuento = 0.15f;
+				txtDescuento.append(" " + (String.format("%.1f",(descuento*100))) +"%");
+			}
+			else if(codDesc.contains("321")){
+				descuento = 0.20f;
+				txtDescuento.append(" " + (descuento*100) +"%");
+			}
+		}
+		
+		if(codDesc.equals("")){
+			JOptionPane.showMessageDialog(null, "Coloca un codigo de descuento", "ERROR", JOptionPane.ERROR_MESSAGE);
+			txtCodigoDesc.requestFocus();
+		}
+		else if(!(codDesc.matches("[1-3]{1,3}"))){
+			JOptionPane.showMessageDialog(null, "Coloca un codigo que cumpla los requisitos", "ERROR", JOptionPane.ERROR_MESSAGE);
+			txtCodigoDesc.setText(null);
+			txtCodigoDesc.requestFocus();
+		}
+		else if(!((codDesc.contains("123")) || (codDesc.contains("231")) ||(codDesc.contains("321")))){
+			JOptionPane.showMessageDialog(null, "No es un codigo de descuento", "No es un codigo de descuento", JOptionPane.ERROR_MESSAGE);
+			txtCodigoDesc.requestFocus();
+			txtCodigoDesc.setText(null);
+		}
+	}
+	
+	void nuevodesc(){
+		descuento = 0;
+		txtDescuento.setText(null);
+		txtDescuento.append("El descuento es del: ");
+		txtCodigoDesc.setText(null);
+		txtCodigoDesc.requestFocus();
+	}
+	
+	void limpiar(){
+		txtCarrito.setText("");
+		valorTotal = false;
+	}
+	
+	void calculo(){
+		totalpr = Productos.totalpr1 + Productos.totalpr2 + Productos.totalpr3 + Productos.totalpr4 +
+				Productos2.totalpr5 + Productos2.totalpr6 + Productos2.totalpr7 + Productos2.totalpr8 + 
+				Productos3.totalpr9 + Productos3.totalpr10 + Productos3.totalpr11 + Productos3.totalpr12;
+		
+		totalperro = ProductosPerros.totalprPerro1 + ProductosPerros.totalprPerro2 + ProductosPerros.totalprPerro3 + ProductosPerros.totalprPerro4;
+		
+		totalgato = ProductosGatos.totalprG1 + ProductosGatos.totalprG2 + ProductosGatos.totalprG3 + ProductosGatos.totalprG4;
+		
+		totalreptil = ProductosReptiles.totalprReptiles1 + ProductosReptiles.totalprReptiles2 + ProductosReptiles.totalprReptiles3 + ProductosReptiles.totalprReptiles4;
+		
+		totalroedor = ProductosRoedores.totalprRoedores1 + ProductosRoedores.totalprRoedores2 + ProductosRoedores.totalprRoedores3 + ProductosRoedores.totalprRoedores4;
+		
+		totalpez = ProductosPeces.totalprPeces1 + ProductosPeces.totalprPeces2 + ProductosPeces.totalprPeces3 + ProductosPeces.totalprPeces4;
+		
+		totalpajaro = ProductosPajaros.totalprPajaro1 + ProductosPajaros.totalprPajaro2 + ProductosPajaros.totalprPajaro3 + ProductosPajaros.totalprPajaro3 + ProductosPajaros.totalprPajaro4;
+		
+		totalconejo = ProductosConejos.totalprConejos1 + ProductosConejos.totalprConejos2 + ProductosConejos.totalprConejos3 + ProductosConejos.totalprConejos4;
+		
+		totalFinal = totalpr + totalperro + totalgato + totalreptil + totalroedor + totalpez + totalpajaro + totalconejo;
+		
+		totalFinalD = (totalpr + totalperro + totalgato + totalreptil + totalroedor + totalpez + totalpajaro + totalconejo) * descuento;
+		
+		totalFinalDescuento = totalFinal - totalFinalD;
+	}
+}

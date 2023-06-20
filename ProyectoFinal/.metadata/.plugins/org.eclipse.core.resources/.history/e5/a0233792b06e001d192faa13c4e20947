@@ -1,0 +1,346 @@
+package Inicio;
+
+
+
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JToolBar;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.border.EmptyBorder;
+
+import Carrito.Carrito;
+import GuisPrincipal.DlgClientes;
+import Productos.Productos;
+import ProductosAnimales.ProductosConejos;
+import ProductosAnimales.ProductosGatos;
+import ProductosAnimales.ProductosPajaros;
+import ProductosAnimales.ProductosPeces;
+import ProductosAnimales.ProductosPerros;
+import ProductosAnimales.ProductosReptiles;
+import ProductosAnimales.ProductosRoedores;
+import javax.swing.JLabel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
+
+public class inicio extends JFrame implements ActionListener{
+
+	private JLabel lblNewLabel;
+	private JMenu JMInicio;
+	private JToolBar toolBar;
+	private GroupLayout gl_contentPane;
+	private JPanel contentPane;
+	private JSeparator separator;
+	private JSeparator separator_1;
+	private JSeparator separator_2;
+	private JSeparator separator_3;
+	private JSeparator separator_4;
+	private JSeparator separator_5;
+	private JSeparator separator_6;
+	private JMenuItem JMPeces;
+	private JMenuItem JMConejos;
+	private JMenuItem JMRoedores;
+	private JMenuItem JMPajaro;
+	private JMenuItem JMReptiles;
+	private JMenuItem JMAcercaDe;
+	private JMenuItem JMGatos;
+	private JMenuItem JMPerros;
+	private JMenuItem JMSalir;
+	private JMenuItem JMPrecios;
+	private JMenuItem JMDescuentos;
+	private JMenu JMJuguetes;
+	private JMenu JMCarrito;
+	private JMenu JMAyuda;
+	private JButton btnClientes;
+	private JButton btnProductos;
+	private JMenu JMConfiguracion;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					inicio frame = new inicio();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	void GUI(){
+		setTitle("Venta de juguetes para animales");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1043, 705);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu menu = new JMenu("");
+		menuBar.add(menu);
+		
+		JMInicio = new JMenu("Archivo");
+		JMInicio.setIcon(new ImageIcon(inicio.class.getResource("/iconos16/inicio.png")));
+		menuBar.add(JMInicio);
+		
+		JMSalir = new JMenuItem("Salir");
+		JMSalir.addActionListener(this);
+		JMSalir.setIcon(new ImageIcon(inicio.class.getResource("/iconos16/exit.png")));
+		JMInicio.add(JMSalir);
+		
+		JMJuguetes = new JMenu("Juguetes");
+		JMJuguetes.setIcon(new ImageIcon(inicio.class.getResource("/iconos16/juguetes.png")));
+		menuBar.add(JMJuguetes);
+
+		JMPerros = new JMenuItem("Perros");
+		JMPerros.addActionListener(this);
+		JMPerros.setIcon(new ImageIcon(inicio.class.getResource("/iconos16/perros.png")));
+		JMJuguetes.add(JMPerros);
+		
+		separator = new JSeparator();
+		JMJuguetes.add(separator);
+		
+		JMGatos = new JMenuItem("Gatos");
+		JMGatos.addActionListener(this);
+		JMGatos.setIcon(new ImageIcon(inicio.class.getResource("/iconos16/gatos.png")));
+		JMJuguetes.add(JMGatos);
+		
+		separator_1 = new JSeparator();
+		JMJuguetes.add(separator_1);
+		
+		JMPeces = new JMenuItem("Peces");
+		JMPeces.addActionListener(this);
+		JMPeces.setIcon(new ImageIcon(inicio.class.getResource("/iconos16/peces.png")));
+		JMJuguetes.add(JMPeces);
+		
+		separator_2 = new JSeparator();
+		JMJuguetes.add(separator_2);
+		
+		JMConejos = new JMenuItem("Conejos");
+		JMConejos.addActionListener(this);
+		JMConejos.setIcon(new ImageIcon(inicio.class.getResource("/iconos16/conejos.png")));
+		JMJuguetes.add(JMConejos);
+		
+		separator_3 = new JSeparator();
+		JMJuguetes.add(separator_3);
+		
+		JMRoedores = new JMenuItem("Roedores");
+		JMRoedores.addActionListener(this);
+		JMRoedores.setIcon(new ImageIcon(inicio.class.getResource("/iconos16/roedores.png")));
+		JMJuguetes.add(JMRoedores);
+		
+		separator_4 = new JSeparator();
+		JMJuguetes.add(separator_4);
+		
+		JMReptiles = new JMenuItem("Reptiles");
+		JMReptiles.addActionListener(this);
+		JMReptiles.setIcon(new ImageIcon(inicio.class.getResource("/iconos16/reptiles.png")));
+		JMJuguetes.add(JMReptiles);
+		
+		separator_5 = new JSeparator();
+		JMJuguetes.add(separator_5);
+		
+		JMPajaro = new JMenuItem("Pajaro");
+		JMPajaro.addActionListener(this);
+		JMPajaro.setIcon(new ImageIcon(inicio.class.getResource("/iconos16/pajaro.png")));
+		JMJuguetes.add(JMPajaro);
+		
+		JMCarrito = new JMenu("Carrito");
+		JMCarrito.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				Carrito carro = new Carrito();
+				carro.setVisible(true);
+			}
+		});
+		JMCarrito.setIcon(new ImageIcon(inicio.class.getResource("/iconos16/carrito.png")));
+		menuBar.add(JMCarrito);
+		
+		JMConfiguracion = new JMenu("Configuracion");
+		JMConfiguracion.setIcon(new ImageIcon(inicio.class.getResource("/iconos16/configuracion.png")));
+		menuBar.add(JMConfiguracion);
+		
+		JMPrecios = new JMenuItem("Precios");
+		JMPrecios.setIcon(new ImageIcon(inicio.class.getResource("/iconos16/precios.png")));
+		JMConfiguracion.add(JMPrecios);
+		
+		separator_6 = new JSeparator();
+		JMConfiguracion.add(separator_6);
+		
+		JMDescuentos = new JMenuItem("Descuentos");
+		JMDescuentos.setIcon(new ImageIcon(inicio.class.getResource("/iconos16/descuentos.png")));
+		JMConfiguracion.add(JMDescuentos);
+		
+		JMAyuda = new JMenu("Ayuda");
+		JMAyuda.setIcon(new ImageIcon(inicio.class.getResource("/iconos16/ayuda.png")));
+		menuBar.add(JMAyuda);
+		
+		JMAcercaDe = new JMenuItem("Acerca de");
+		JMAcercaDe.setIcon(new ImageIcon(inicio.class.getResource("/iconos16/ayuda.png")));
+		JMAcercaDe.addActionListener(this);
+		JMAyuda.add(JMAcercaDe);
+		
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		toolBar = new JToolBar();
+		toolBar.setFloatable(false);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setIcon(new ImageIcon(inicio.class.getResource("/ImagenesGrandes/Inicio.jpg")));
+		
+		gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addComponent(toolBar, GroupLayout.DEFAULT_SIZE, 902, Short.MAX_VALUE)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 1018, Short.MAX_VALUE)
+					.addContainerGap())
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(toolBar, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 591, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(329, Short.MAX_VALUE))
+		);
+		
+		btnClientes = new JButton("Clientes");
+		btnClientes.setIcon(new ImageIcon(inicio.class.getResource("/iconos32/clientes 32.png")));
+		btnClientes.addActionListener(this);
+		btnClientes.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		toolBar.add(btnClientes);
+		
+		btnProductos = new JButton("Productos mas pedidos");
+		btnProductos.addActionListener(this);
+		btnProductos.setIcon(new ImageIcon(inicio.class.getResource("/iconos32/productos 32.png")));
+		btnProductos.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		toolBar.add(btnProductos);
+		contentPane.setLayout(gl_contentPane);
+		setLocationRelativeTo(null);
+		setResizable(false);
+	}
+	/**
+	 * Create the frame.
+	 */
+	public inicio() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(inicio.class.getResource("/iconos32/principal 32.png")));
+		setLocationRelativeTo(null);
+		GUI();
+	}
+	void productos(){
+			Productos pr = new Productos();
+			pr.setVisible(true);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == JMSalir) {
+			actionEventPerformedJMSalir(e);
+		}
+		if(e.getSource() == JMPerros) {
+			actionEventPerformedJMPerros(e);
+		}
+		if(e.getSource() == JMGatos) {
+			actionEventPerformedJMGatos(e);
+		}
+		if(e.getSource() == JMPeces) {
+			actionEventPerformedJMPeces(e);
+		}
+		if(e.getSource() == JMConejos) {
+			actionEventPerformedJMConejos(e);
+		}
+		if(e.getSource() == JMRoedores) {
+			actionEventPerformedJMRoedores(e);
+		}
+		if(e.getSource() == JMReptiles) {
+			actionEventPerformedJMReptiles(e);
+		}
+		if(e.getSource() == JMPajaro) {
+			actionEventPerformedJMPajaro(e);
+		}
+		if(e.getSource() == JMAcercaDe) {
+			actionEventPerformedJMAcercaDe(e);
+		}
+		if(e.getSource() == btnClientes) {
+			actionEventPerformedBtnClientes(e);
+		}
+		if(e.getSource() == btnProductos) {
+			actionEventPerformedBtnProductos(e);
+		}
+	}
+	
+	protected void actionEventPerformedJMSalir(ActionEvent arg0) {
+		System.exit(0);
+	}
+	protected void actionEventPerformedJMPerros(ActionEvent arg0) {
+		ProductosPerros perro = new ProductosPerros();
+		perro.setVisible(true);
+	}
+	protected void actionEventPerformedJMGatos(ActionEvent arg0) {
+		ProductosGatos gato = new ProductosGatos();
+		gato.setVisible(true);
+	}
+	protected void actionEventPerformedJMPeces(ActionEvent arg0) {
+		ProductosPeces peces = new ProductosPeces();
+		peces.setVisible(true);
+	}
+	protected void actionEventPerformedJMConejos(ActionEvent arg0) {
+		ProductosConejos conejos = new ProductosConejos();
+		conejos.setVisible(true);
+	}
+	protected void actionEventPerformedJMRoedores(ActionEvent arg0) {
+		ProductosRoedores roedores = new ProductosRoedores();
+		roedores.setVisible(true);
+	}
+	protected void actionEventPerformedJMReptiles(ActionEvent arg0) {
+		ProductosReptiles reptiles = new ProductosReptiles();
+		reptiles.setVisible(true);
+	}
+	protected void actionEventPerformedJMPajaro(ActionEvent arg0) {
+		ProductosPajaros pajaros = new ProductosPajaros();
+		pajaros.setVisible(true);
+	}
+	protected void actionEventPerformedJMAcercaDe(ActionEvent arg0) {
+		JOptionPane.showMessageDialog(null,"Desarrolladores  \n ---------------------------------------------- \n Franco Cruz"
+				+ " \n Correo: VentadeJuguetes@gmail.com \n Numero : 912145635", 
+				"Acerca de",JOptionPane.INFORMATION_MESSAGE);
+	}
+	protected void actionEventPerformedBtnClientes(ActionEvent arg0) {
+		DlgClientes dc = new DlgClientes();
+		dc.setLocationRelativeTo(null);
+		dc.setVisible(true);
+	}
+	protected void actionEventPerformedBtnProductos(ActionEvent arg0) {
+		productos();
+	}
+}

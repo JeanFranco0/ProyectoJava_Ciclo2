@@ -1,0 +1,475 @@
+package Carrito;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import Arreglos.*;
+import Clases.*;
+import Productos.Productos;
+import Productos.Productos2;
+import Productos.Productos3;
+import ProductosAnimales.ProductosConejos;
+import ProductosAnimales.ProductosGatos;
+import ProductosAnimales.ProductosPajaros;
+import ProductosAnimales.ProductosPeces;
+import ProductosAnimales.ProductosPerros;
+import ProductosAnimales.ProductosReptiles;
+import ProductosAnimales.ProductosRoedores;
+
+import java.awt.Toolkit;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTable;
+
+public class Carrito extends JFrame implements ActionListener{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField txtCodigoDesc;
+	private JButton btnAplicar;
+	private JButton btnGenerarFactura;
+	private JTextArea txtDescuento;
+	private JButton btnNuevoDesc;
+	private JButton btnLimpiar;
+	private JButton btnMostrarProductos;
+	private JTextArea txtCarrito;
+	private float descuento = 0;
+	private String codDesc;
+	private boolean valorTotal = false;
+	private float totalFinal=0;
+	private float totalpr =0, totalperro=0, totalgato=0, totalreptil=0, totalroedor=0, totalpez=0, totalpajaro=0, totalconejo=0, totalFinalD = 0,
+			totalFinalDescuento =0;
+	private boolean valordesc;
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Carrito frame = new Carrito();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Carrito() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Carrito.class.getResource("/iconos16/carrito.png")));
+		setTitle("Carrito");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 768, 582);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblCodDescuento = new JLabel("Cod. Descuento:");
+		lblCodDescuento.setBounds(10, 422, 93, 14);
+		contentPane.add(lblCodDescuento);
+		
+		txtCodigoDesc = new JTextField();
+		txtCodigoDesc.setBounds(103, 419, 101, 20);
+		contentPane.add(txtCodigoDesc);
+		txtCodigoDesc.setColumns(10);
+		
+		btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.setBounds(466, 479, 101, 27);
+		btnLimpiar.addActionListener(this);
+		/*
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				limpiar();
+			}
+		}); */
+		btnLimpiar.setBackground(Color.RED);
+		contentPane.add(btnLimpiar);
+		
+		btnAplicar = new JButton("Aplicar");
+		btnAplicar.setBounds(103, 447, 111, 23);
+		btnAplicar.addActionListener(this);
+		/*
+		btnAplicar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				descuento();
+			}
+		}); */
+		contentPane.add(btnAplicar);
+		
+		btnGenerarFactura = new JButton("Generar Total a Pagar");
+		btnGenerarFactura.setBounds(577, 480, 165, 25);
+		btnGenerarFactura.addActionListener(this);
+		/*
+		btnGenerarFactura.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				calculo();
+				totalPagar();
+			}
+		}); */
+		btnGenerarFactura.setBackground(Color.GREEN);
+		contentPane.add(btnGenerarFactura);
+		
+		
+		txtDescuento = new JTextArea();
+		txtDescuento.setBounds(218, 417, 238, 38);
+		contentPane.add(txtDescuento);
+		//txtDescuento.setText("El descuento es del: ");
+		
+		btnNuevoDesc = new JButton("Nuevo Desc.");
+		btnNuevoDesc.setBounds(103, 481, 111, 23);
+		btnNuevoDesc.addActionListener(this);
+		/*
+		btnNuevoDesc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nuevodesc();
+			}
+		}); */
+		contentPane.add(btnNuevoDesc);
+		
+		btnMostrarProductos = new JButton("Mostrar productos agregados");
+		btnMostrarProductos.setBounds(466, 418, 256, 23);
+		btnMostrarProductos.setBackground(Color.ORANGE);
+		btnMostrarProductos.addActionListener(this);
+		/*
+		btnMostrarProductos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {	
+				nuevo();
+			
+				productos1();
+				productos2();
+				productos3();
+				productosperro();
+				productosgato();
+				productospeces();
+				productosconejos();
+				productosroedores();
+				productosreptiles();
+				productospajaro(); 
+			}
+		}); */
+		
+		contentPane.add(btnMostrarProductos);
+		
+		JLabel lblElCodigoEs = new JLabel("El codigo de descuento es de 3 digitos que varia entre el 1-3.");
+		lblElCodigoEs.setBounds(0, 519, 367, 14);
+		contentPane.add(lblElCodigoEs);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 732, 388);
+		contentPane.add(scrollPane);
+		
+		txtCarrito = new JTextArea();
+		scrollPane.setViewportView(txtCarrito);
+		
+		txtCarrito.setText("     Id" + "\tNombre del producto" + "\t\t Precio" + "\t Cantidad" + "\t Total");
+		
+		setResizable(false);
+		this.setLocationRelativeTo(null);
+	}
+	
+	public void actionPerformed(ActionEvent arg0) {
+		if(arg0.getSource() == btnGenerarFactura) {
+			actionPerformedbtnGenerarFacutra(arg0);
+		}
+		if(arg0.getSource() == btnMostrarProductos){
+			actionPerformedbtnMostrarProductos(arg0);
+		}
+		if(arg0.getSource() == btnAplicar) {
+			actionPerformedbtnAplicar(arg0);
+		}
+		if(arg0.getSource() == btnNuevoDesc) {
+			actionPerformedbtnNuevoDesc(arg0);
+		}
+		if(arg0.getSource() == btnLimpiar) {
+			actionPerformedbtnLimpiar(arg0);
+		}
+	}
+	
+	ArregloConfiguracion ac = new ArregloConfiguracion();
+	ArregloDescuento ad = new ArregloDescuento();
+	Desc d;
+	Config c;
+	ProductosPerros pr;
+	ProductosGatos ga;
+	ProductosPeces pez;
+	ProductosConejos con;
+	ProductosRoedores ro;
+	ProductosReptiles rep;
+	ProductosPajaros pa;
+	
+	protected void actionPerformedbtnMostrarProductos(ActionEvent arg0) {
+		listar();
+	}
+	protected void actionPerformedbtnGenerarFacutra(ActionEvent arg0) {
+		totalPagar();
+	}
+	protected void actionPerformedbtnAplicar(ActionEvent arg0) {
+		descuento();
+	}
+	protected void actionPerformedbtnNuevoDesc(ActionEvent arg0) {
+		nuevodesc();
+	}
+	protected void actionPerformedbtnLimpiar(ActionEvent arg0) {
+		limpiar();
+	}
+	
+	void listar() {
+		if(pr.estado == 1) {
+			productosPerros();
+		}
+		if(ga.estado == 1) {
+			productosGatos();
+		}
+		if(pez.estado == 1) {
+			productosPeces();
+		}
+		if(con.estado == 1) {
+			productosConejos();
+		}
+		if(ro.estado == 1) {
+			productosRoedores();
+		}
+		if(rep.estado == 1) {
+			productosReptiles();
+		}
+		if(pa.estado == 1) {
+			productosPajaros();
+		}
+		if(pr.estado == 0) {
+			JOptionPane.showMessageDialog(null, "No hay productos agregados", "ERROR",JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	void productosPerros() {
+		c= ac.obtener(0);
+		imprimir("\n------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-pr.cantPr1)) + "\t" + pr.totalprPerro1);
+			
+		c= ac.obtener(1);
+		imprimir("\n");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-pr.cantPr2)) + "\t" + pr.totalprPerro2);
+		
+		c= ac.obtener(2);
+		imprimir("\n");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-pr.cantPr3)) + "\t" + pr.totalprPerro3);
+		
+		c= ac.obtener(3);
+		imprimir("\n");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-pr.cantPr4)) + "\t" + pr.totalprPerro4);
+	}
+	void productosGatos() {
+		c= ac.obtener(4);
+		imprimir("\n------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-ga.cantPr1)) + "\t" + ga.totalprG1);
+			
+		c= ac.obtener(5);
+		imprimir("\n");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-ga.cantPr2)) + "\t" + ga.totalprG2);
+		
+		c= ac.obtener(6);
+		imprimir("\n");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-ga.cantPr3)) + "\t" + ga.totalprG3);
+		
+		c= ac.obtener(7);
+		imprimir("\n");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-ga.cantPr4)) + "\t" + ga.totalprG4);
+	}
+	void productosPeces() {
+		c= ac.obtener(8);
+		imprimir("\n------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-pez.cantPr1)) + "\t" + pez.totalprPeces1);
+			
+		c= ac.obtener(9);
+		imprimir("\n");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-pez.cantPr2)) + "\t" + pez.totalprPeces2);
+		
+		c= ac.obtener(10);
+		imprimir("\n");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-pez.cantPr3)) + "\t" + pez.totalprPeces3);
+		
+		c= ac.obtener(11);
+		imprimir("\n");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-pez.cantPr4)) + "\t" + pez.totalprPeces4);
+	}
+	void productosConejos() {
+		c= ac.obtener(12);
+		imprimir("\n------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-con.cantPr1)) + "\t" + con.totalprConejos1);
+			
+		c= ac.obtener(13);
+		imprimir("\n");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-con.cantPr2)) + "\t" + con.totalprConejos2);
+		
+		c= ac.obtener(14);
+		imprimir("\n");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-con.cantPr3)) + "\t" + con.totalprConejos3);
+		
+		c= ac.obtener(15);
+		imprimir("\n");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-con.cantPr4)) + "\t" + con.totalprConejos4);
+	}
+	void productosRoedores() {
+		c= ac.obtener(16);
+		imprimir("\n------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-ro.cantPr1)) + "\t" + ro.totalprRoedores1);
+			
+		c= ac.obtener(17);
+		imprimir("\n");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-ro.cantPr2)) + "\t" + ro.totalprRoedores2);
+		
+		c= ac.obtener(18);
+		imprimir("\n");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-ro.cantPr3)) + "\t" + ro.totalprRoedores3);
+		
+		c= ac.obtener(19);
+		imprimir("\n");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-ro.cantPr4)) + "\t" + ro.totalprRoedores4);
+	}
+	void productosReptiles() {
+		c= ac.obtener(20);
+		imprimir("\n------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-rep.cantPr1)) + "\t" + rep.totalprReptiles1);
+			
+		c= ac.obtener(21);
+		imprimir("\n");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-rep.cantPr2)) + "\t" + rep.totalprReptiles2);
+		
+		c= ac.obtener(22);
+		imprimir("\n");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-rep.cantPr3)) + "\t" + rep.totalprReptiles3);
+		
+		c= ac.obtener(23);
+		imprimir("\n");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-rep.cantPr4)) + "\t" + rep.totalprReptiles4);
+	}
+	void productosPajaros() {
+		c= ac.obtener(24);
+		imprimir("\n------------------------------------------------------------------------------------------------------------------------------------------------------------");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-pa.cantPr1)) + "\t" + pa.totalprPajaro1);
+			
+		c= ac.obtener(25);
+		imprimir("\n");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-pa.cantPr2)) + "\t" + pa.totalprPajaro2);
+		
+		c= ac.obtener(26);
+		imprimir("\n");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-pa.cantPr3)) + "\t" + pa.totalprPajaro3);
+		
+		c= ac.obtener(27);
+		imprimir("\n");
+		imprimir("  "+c.getIdPr() + "\t " + c.getNombrePr() + "\t\t  S/. " + c.getPrecioPr() + ".00\t   " + (c.getCantPr()-(c.getCantPr()-pa.cantPr4)) + "\t" + pa.totalprPajaro4);
+	}
+	void imprimir(String s) {
+		txtCarrito.append(s+"\n");
+	}
+	void imprimir() {
+		imprimir("");
+	}
+	String leerCodDesc() {
+		return txtCodigoDesc.getText().trim();
+	}
+	void mensaje(String s) {
+		JOptionPane.showMessageDialog(this, s, "Informacion", 0);
+	}
+	void error(String s, JTextField txt) {
+		mensaje(s);
+		txt.setText("");
+		txt.requestFocus();
+	}
+	void descuento(){	
+		codDesc = leerCodDesc();
+		valordesc=false;
+		
+		if(codDesc.matches("[1-3]{1,3}")) {
+			for(int i=0; i<ad.tamanio();i++) {
+				d = ad.obtener(i);
+				if(codDesc.contains(d.getCodDesc())) {
+					descuento = d.getDescuento();
+					txtDescuento.append("El descuento es del: " + (String.format("%.1f",(descuento))) + "%");	
+					txtCodigoDesc.setText("");
+					valordesc=true;
+				}
+			}
+		}
+		if(valordesc == false) {
+			error("Codigo de descuento incorrecto", txtCodigoDesc);
+		}
+	}
+	
+	void nuevodesc(){
+		descuento = 0;
+		txtDescuento.setText("");
+		txtCodigoDesc.setText("");
+		txtCodigoDesc.requestFocus();
+		valordesc=false;
+	}
+	
+	void limpiar(){
+		txtCarrito.setText("     Id" + "\tNombre del producto" + "\t\t Precio" + "\t Cantidad" + "\t Total");
+		pr.estado =0;
+		ga.estado=0;
+		ro.estado=0;
+		con.estado=0;
+		pez.estado=0;
+		rep.estado=0;
+		pa.estado=0;
+		totalFinal=0;
+		totalFinalDescuento=0;
+		valorTotal=false;
+	}
+	
+	void totalPagar(){
+		totalpr = Productos.totalpr1 + Productos.totalpr2 + Productos.totalpr3 + Productos.totalpr4 +
+				Productos2.totalpr5 + Productos2.totalpr6 + Productos2.totalpr7 + Productos2.totalpr8 + 
+				Productos3.totalpr9 + Productos3.totalpr10 + Productos3.totalpr11 + Productos3.totalpr12;
+		
+		totalperro = pr.totalprPerro1 + pr.totalprPerro2 + pr.totalprPerro3 + pr.totalprPerro4;
+		
+		totalgato = ga.totalprG1 + ga.totalprG2 + ga.totalprG3 + ga.totalprG4;
+		
+		totalreptil = rep.totalprReptiles1 + rep.totalprReptiles2 + rep.totalprReptiles3 + rep.totalprReptiles4;
+		
+		totalroedor = ro.totalprRoedores1 + ro.totalprRoedores2 + ro.totalprRoedores3 + ro.totalprRoedores4;
+		
+		totalpez = pez.totalprPeces1 + pez.totalprPeces2 + pez.totalprPeces3 + pez.totalprPeces4;
+		
+		totalpajaro = pa.totalprPajaro1 + pa.totalprPajaro2 + pa.totalprPajaro3 + pa.totalprPajaro3 + pa.totalprPajaro4;
+		
+		totalconejo = con.totalprConejos1 + con.totalprConejos2 + con.totalprConejos3 + con.totalprConejos4;
+		
+		totalFinal = totalpr + totalperro + totalgato + totalreptil + totalroedor + totalpez + totalpajaro + totalconejo;
+		
+		totalFinalD = (totalpr + totalperro + totalgato + totalreptil + totalroedor + totalpez + totalpajaro + totalconejo) * (descuento/100);
+		
+		totalFinalDescuento = totalFinal - totalFinalD;
+		
+		if(valorTotal == false) {
+			imprimir("");
+			imprimir("\t\t\t\t El total a pagar es: \tS/." + totalFinal);
+			imprimir("\t\t\t\t El descuento es: \tS/." + totalFinalD);
+			imprimir("\t\t\t\t El total con descuento es: \tS/." + totalFinalDescuento);
+			valorTotal=true;
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Ya estas visualizando el total a pagar", "ERROR",JOptionPane.ERROR_MESSAGE);
+		}
+		
+	}
+}

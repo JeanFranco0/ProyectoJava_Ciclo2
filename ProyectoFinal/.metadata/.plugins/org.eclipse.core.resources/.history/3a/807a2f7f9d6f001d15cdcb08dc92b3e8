@@ -1,0 +1,300 @@
+package ProductosAnimales;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import Arreglos.ArregloConfiguracion;
+import Clases.Config;
+
+import java.awt.Toolkit;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.Color;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class ProductosRoedores extends JFrame implements ActionListener{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField txtBolaEjercicioRoedores;
+	private JTextField txtCajasArenaRoedores;
+	private JTextField txtRuedaRoedores;
+	private JTextField txtTunelesRoedores;
+	private JButton btnA1;
+	private JButton btnA2;
+	private JButton btnA3;
+	private JButton btnA4;
+	public static int estado=0;
+	public static float totalprRoedores1;
+	public static float totalprRoedores2;
+	public static float totalprRoedores3;
+	public static float totalprRoedores4;
+	public static int cantPr1;
+	public static int cantPr2;
+	public static int cantPr3;
+	public static int cantPr4;
+	public static boolean valorpr1 = false;
+	public static boolean valorpr2 = false;
+	public static boolean valorpr3 = false;
+	public static boolean valorpr4 = false;
+	private JTextField txtPrecio;
+	private JTextField txtPrecio1;
+	private JTextField txtPrecio2;
+	private JTextField txtPrecio3;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ProductosRoedores frame = new ProductosRoedores();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public ProductosRoedores() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ProductosRoedores.class.getResource("/iconos16/roedores.png")));
+		setTitle("Productos para roedores");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 688, 671);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		setLocationRelativeTo(null);
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(ProductosRoedores.class.getResource("/imagenes/hamster/bola de ejercicio.jpg")));
+		label.setBounds(10, 11, 250, 217);
+		contentPane.add(label);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon(ProductosRoedores.class.getResource("/imagenes/hamster/cajas de arena.jpg")));
+		label_1.setBounds(411, 11, 250, 217);
+		contentPane.add(label_1);
+		
+		JLabel label_2 = new JLabel("");
+		label_2.setIcon(new ImageIcon(ProductosRoedores.class.getResource("/imagenes/hamster/rueda.jpg")));
+		label_2.setBounds(10, 310, 250, 217);
+		contentPane.add(label_2);
+		
+		JLabel label_3 = new JLabel("");
+		label_3.setIcon(new ImageIcon(ProductosRoedores.class.getResource("/imagenes/hamster/tuneles.jpg")));
+		label_3.setBounds(411, 310, 250, 217);
+		contentPane.add(label_3);
+		
+		JLabel label_5 = new JLabel("Precio:");
+		label_5.setForeground(Color.RED);
+		label_5.setFont(new Font("Tahoma", Font.BOLD, 13));
+		label_5.setBounds(155, 241, 52, 22);
+		contentPane.add(label_5);
+		
+		txtBolaEjercicioRoedores = new JTextField();
+		txtBolaEjercicioRoedores.setColumns(10);
+		txtBolaEjercicioRoedores.setBounds(184, 274, 86, 20);
+		contentPane.add(txtBolaEjercicioRoedores);
+		
+		JLabel label_6 = new JLabel("Cant.");
+		label_6.setBounds(155, 276, 46, 14);
+		contentPane.add(label_6);
+		
+		JButton btnA1 = new JButton("A\u00F1adir al carrito");
+		btnA1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				prRoedores1();
+			}
+		});
+		btnA1.setBackground(Color.GREEN);
+		btnA1.setBounds(10, 272, 135, 23);
+		contentPane.add(btnA1);
+		
+		JLabel lblBolaDeEjercicio = new JLabel("Bola de ejercicio");
+		lblBolaDeEjercicio.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblBolaDeEjercicio.setBounds(15, 239, 170, 22);
+		contentPane.add(lblBolaDeEjercicio);
+		
+		JLabel label_7 = new JLabel("Precio:");
+		label_7.setForeground(Color.RED);
+		label_7.setFont(new Font("Tahoma", Font.BOLD, 13));
+		label_7.setBounds(533, 241, 52, 22);
+		contentPane.add(label_7);
+		
+		txtCajasArenaRoedores = new JTextField();
+		txtCajasArenaRoedores.setColumns(10);
+		txtCajasArenaRoedores.setBounds(562, 274, 86, 20);
+		contentPane.add(txtCajasArenaRoedores);
+		
+		JLabel label_8 = new JLabel("Cant.");
+		label_8.setBounds(533, 276, 46, 14);
+		contentPane.add(label_8);
+		
+		JButton btnA2 = new JButton("A\u00F1adir al carrito");
+		btnA2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				prRoedores2();
+			}
+		});
+		btnA2.setBackground(Color.GREEN);
+		btnA2.setBounds(388, 272, 135, 23);
+		contentPane.add(btnA2);
+		
+		JLabel lblCajasDeArena = new JLabel("Cajas de arena");
+		lblCajasDeArena.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblCajasDeArena.setBounds(393, 239, 170, 22);
+		contentPane.add(lblCajasDeArena);
+		
+		JLabel label_9 = new JLabel("Precio:");
+		label_9.setForeground(Color.RED);
+		label_9.setFont(new Font("Tahoma", Font.BOLD, 13));
+		label_9.setBounds(155, 547, 52, 22);
+		contentPane.add(label_9);
+		
+		txtRuedaRoedores = new JTextField();
+		txtRuedaRoedores.setColumns(10);
+		txtRuedaRoedores.setBounds(184, 580, 86, 20);
+		contentPane.add(txtRuedaRoedores);
+		
+		JLabel label_10 = new JLabel("Cant.");
+		label_10.setBounds(155, 582, 46, 14);
+		contentPane.add(label_10);
+		
+		JButton btnA3 = new JButton("A\u00F1adir al carrito");
+		btnA3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				prRoedores3();
+			}
+		});
+		btnA3.setBackground(Color.GREEN);
+		btnA3.setBounds(10, 578, 135, 23);
+		contentPane.add(btnA3);
+		
+		JLabel lblRuedaParaHamster = new JLabel("Rueda para hamster");
+		lblRuedaParaHamster.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblRuedaParaHamster.setBounds(10, 538, 170, 22);
+		contentPane.add(lblRuedaParaHamster);
+		
+		JLabel label_11 = new JLabel("Precio:");
+		label_11.setForeground(Color.RED);
+		label_11.setFont(new Font("Tahoma", Font.BOLD, 13));
+		label_11.setBounds(533, 547, 52, 22);
+		contentPane.add(label_11);
+		
+		txtTunelesRoedores = new JTextField();
+		txtTunelesRoedores.setColumns(10);
+		txtTunelesRoedores.setBounds(562, 580, 86, 20);
+		contentPane.add(txtTunelesRoedores);
+		
+		JLabel label_12 = new JLabel("Cant.");
+		label_12.setBounds(533, 582, 46, 14);
+		contentPane.add(label_12);
+		
+		JButton btnA4 = new JButton("A\u00F1adir al carrito");
+		btnA4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				prRoedores4();
+			}
+		});
+		btnA4.setBackground(Color.GREEN);
+		btnA4.setBounds(388, 578, 135, 23);
+		contentPane.add(btnA4);
+		
+		JLabel lblTunelesParaHamster = new JLabel("Tuneles para hamster");
+		lblTunelesParaHamster.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblTunelesParaHamster.setBounds(370, 528, 170, 22);
+		contentPane.add(lblTunelesParaHamster);
+		
+		txtPrecio = new JTextField();
+		txtPrecio.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtPrecio.setBounds(206, 243, 68, 20);
+		contentPane.add(txtPrecio);
+		txtPrecio.setColumns(10);
+		
+		txtPrecio1 = new JTextField();
+		txtPrecio1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtPrecio1.setColumns(10);
+		txtPrecio1.setBounds(595, 243, 68, 20);
+		contentPane.add(txtPrecio1);
+		
+		txtPrecio2 = new JTextField();
+		txtPrecio2.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtPrecio2.setColumns(10);
+		txtPrecio2.setBounds(206, 549, 68, 20);
+		contentPane.add(txtPrecio2);
+		
+		txtPrecio3 = new JTextField();
+		txtPrecio3.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtPrecio3.setColumns(10);
+		txtPrecio3.setBounds(593, 549, 68, 20);
+		contentPane.add(txtPrecio3);
+		
+		setResizable(false);
+		this.setLocationRelativeTo(null);
+	}
+	void prRoedores1(){
+		cantPr1 = txtBolaEjercicioRoedores.getText();
+		if((cantPr1.matches("[0-9]{1,2}"))){
+			valorpr1 = true;
+			if(valorpr1 == true){
+				totalprRoedores1 = prRoedores1 * Float.parseFloat(cantPr1);
+			}
+		}
+		else{
+			 JOptionPane.showMessageDialog(null, "Coloca la cantidad correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	void prRoedores2(){
+		cantPr2 = txtCajasArenaRoedores.getText();
+		if((cantPr2.matches("[0-9]{1,2}"))){
+			valorpr2 = true;
+			if(valorpr2 == true){
+				totalprRoedores2 = prRoedores2 * Float.parseFloat(cantPr2);
+			}
+		}
+		else{
+			 JOptionPane.showMessageDialog(null, "Coloca la cantidad correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	void prRoedores3(){
+		cantPr3 = txtRuedaRoedores.getText();
+		if((cantPr3.matches("[0-9]{1,2}"))){
+			valorpr3 = true;
+			if(valorpr3 == true){
+				totalprRoedores3 = prRoedores3 * Float.parseFloat(cantPr3);
+			}
+		}
+		else{
+			 JOptionPane.showMessageDialog(null, "Coloca la cantidad correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	void prRoedores4(){
+		cantPr4 = txtTunelesRoedores.getText();
+		if((cantPr4.matches("[0-9]{1,2}"))){
+			valorpr4 = true;
+			if(valorpr4 == true){
+				totalprRoedores4 = prRoedores4 * Float.parseFloat(cantPr4);
+			}
+		}
+		else{
+			 JOptionPane.showMessageDialog(null, "Coloca la cantidad correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+}

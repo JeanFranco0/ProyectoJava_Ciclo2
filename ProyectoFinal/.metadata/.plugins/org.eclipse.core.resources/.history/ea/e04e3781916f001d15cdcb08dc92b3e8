@@ -1,0 +1,296 @@
+package ProductosAnimales;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Toolkit;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class ProductosGatos extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField txtCamaGatos;
+	private JTextField txtCañaGatos;
+	private JTextField txtPelotasGatos;
+	private JTextField txtRatonesParaGatos;
+	public static float prGato1 =82;
+	public static float prGato2 =30;
+	public static float prGato3 =10;
+	public static float prGato4 = 25;
+	public static float totalprG1;
+	public static float totalprG2;
+	public static float totalprG3;
+	public static float totalprG4;
+	public static String cantPr1;
+	public static String cantPr2;
+	public static String cantPr3;
+	public static String cantPr4;
+	public static boolean valorpr1 = false;
+	public static boolean valorpr2 = false;
+	public static boolean valorpr3 = false;
+	public static boolean valorpr4 = false;
+	private JTextField txtPrecio;
+	private JTextField txtPrecio1;
+	private JTextField txtPrecio2;
+	private JTextField txtPrecio3;
+	
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ProductosGatos frame = new ProductosGatos();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public ProductosGatos() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ProductosGatos.class.getResource("/iconos16/gatos.png")));
+		setTitle("Productos para gatos");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 645, 635);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		setLocationRelativeTo(null);
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(ProductosGatos.class.getResource("/imagenes/Gatos/camas para gatos.jpg")));
+		label.setBounds(10, 11, 229, 202);
+		contentPane.add(label);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon(ProductosGatos.class.getResource("/imagenes/Gatos/ca\u00F1itas para gatos.jpg")));
+		label_1.setBounds(378, 11, 241, 202);
+		contentPane.add(label_1);
+		
+		JLabel label_2 = new JLabel("");
+		label_2.setIcon(new ImageIcon(ProductosGatos.class.getResource("/imagenes/Gatos/pelotas para gato.jpg")));
+		label_2.setBounds(10, 295, 229, 202);
+		contentPane.add(label_2);
+		
+		JLabel label_3 = new JLabel("");
+		label_3.setIcon(new ImageIcon(ProductosGatos.class.getResource("/imagenes/Gatos/raton de peluche.jpg")));
+		label_3.setBounds(378, 295, 241, 202);
+		contentPane.add(label_3);
+		
+		JLabel lblCamaParaGatos = new JLabel("Cama para gatos");
+		lblCamaParaGatos.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblCamaParaGatos.setBounds(15, 228, 170, 22);
+		contentPane.add(lblCamaParaGatos);
+		
+		JLabel label_5 = new JLabel("Precio:");
+		label_5.setForeground(Color.RED);
+		label_5.setFont(new Font("Tahoma", Font.BOLD, 13));
+		label_5.setBounds(155, 222, 52, 22);
+		contentPane.add(label_5);
+		
+		txtCamaGatos = new JTextField();
+		txtCamaGatos.setColumns(10);
+		txtCamaGatos.setBounds(184, 263, 86, 20);
+		contentPane.add(txtCamaGatos);
+		
+		JLabel label_7 = new JLabel("Cant.");
+		label_7.setBounds(155, 265, 46, 14);
+		contentPane.add(label_7);
+		
+		JButton btnA1 = new JButton("A\u00F1adir al carrito");
+		btnA1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				prGato1();
+			}
+		});
+		btnA1.setBackground(Color.GREEN);
+		btnA1.setBounds(10, 261, 135, 23);
+		contentPane.add(btnA1);
+		
+		JLabel lblCuerdaParaGatos = new JLabel("Ca\u00F1a para gatos");
+		lblCuerdaParaGatos.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblCuerdaParaGatos.setBounds(364, 228, 170, 22);
+		contentPane.add(lblCuerdaParaGatos);
+		
+		JLabel label_6 = new JLabel("Precio:");
+		label_6.setForeground(Color.RED);
+		label_6.setFont(new Font("Tahoma", Font.BOLD, 13));
+		label_6.setBounds(504, 224, 52, 22);
+		contentPane.add(label_6);
+		
+		txtCamaGatos = new JTextField();
+		txtCamaGatos.setColumns(10);
+		txtCamaGatos.setBounds(533, 263, 86, 20);
+		contentPane.add(txtCamaGatos);
+		
+		JLabel label_9 = new JLabel("Cant.");
+		label_9.setBounds(504, 265, 46, 14);
+		contentPane.add(label_9);
+		
+		JButton btnA2 = new JButton("A\u00F1adir al carrito");
+		btnA2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				prGato2();
+			}
+		});
+		btnA2.setBackground(Color.GREEN);
+		btnA2.setBounds(359, 261, 135, 23);
+		contentPane.add(btnA2);
+		
+		JLabel lblPelotasParaGatos = new JLabel("Pelotas para gatos");
+		lblPelotasParaGatos.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblPelotasParaGatos.setBounds(5, 529, 170, 22);
+		contentPane.add(lblPelotasParaGatos);
+		
+		JLabel label_8 = new JLabel("Precio:");
+		label_8.setForeground(Color.RED);
+		label_8.setFont(new Font("Tahoma", Font.BOLD, 13));
+		label_8.setBounds(145, 523, 52, 22);
+		contentPane.add(label_8);
+		
+		txtPelotasGatos = new JTextField();
+		txtPelotasGatos.setColumns(10);
+		txtPelotasGatos.setBounds(174, 564, 86, 20);
+		contentPane.add(txtPelotasGatos);
+		
+		JLabel label_11 = new JLabel("Cant.");
+		label_11.setBounds(145, 566, 46, 14);
+		contentPane.add(label_11);
+		
+		JButton btnA3 = new JButton("A\u00F1adir al carrito");
+		btnA3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				prGato3();
+			}
+		});
+		btnA3.setBackground(Color.GREEN);
+		btnA3.setBounds(0, 562, 135, 23);
+		contentPane.add(btnA3);
+		
+		txtRatonesParaGatos = new JTextField();
+		txtRatonesParaGatos.setColumns(10);
+		txtRatonesParaGatos.setBounds(533, 563, 86, 20);
+		contentPane.add(txtRatonesParaGatos);
+		
+		JLabel lblRatonesDePeluche = new JLabel("Ratones de peluche para gatos");
+		lblRatonesDePeluche.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblRatonesDePeluche.setBounds(364, 508, 223, 22);
+		contentPane.add(lblRatonesDePeluche);
+		
+		JLabel label_12 = new JLabel("Cant.");
+		label_12.setBounds(504, 565, 46, 14);
+		contentPane.add(label_12);
+		
+		JLabel label_13 = new JLabel("Precio:");
+		label_13.setForeground(Color.RED);
+		label_13.setFont(new Font("Tahoma", Font.BOLD, 13));
+		label_13.setBounds(477, 530, 52, 22);
+		contentPane.add(label_13);
+		
+		JButton btnA4 = new JButton("A\u00F1adir al carrito");
+		btnA4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				prGato4();
+			}
+		});
+		btnA4.setBackground(Color.GREEN);
+		btnA4.setBounds(359, 561, 135, 23);
+		contentPane.add(btnA4);
+		
+		txtPrecio = new JTextField();
+		txtPrecio.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtPrecio.setBounds(205, 224, 65, 20);
+		contentPane.add(txtPrecio);
+		txtPrecio.setColumns(10);
+		
+		txtPrecio1 = new JTextField();
+		txtPrecio1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtPrecio1.setColumns(10);
+		txtPrecio1.setBounds(554, 224, 65, 20);
+		contentPane.add(txtPrecio1);
+		
+		txtPrecio2 = new JTextField();
+		txtPrecio2.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtPrecio2.setColumns(10);
+		txtPrecio2.setBounds(195, 525, 65, 20);
+		contentPane.add(txtPrecio2);
+		
+		txtPrecio3 = new JTextField();
+		txtPrecio3.setFont(new Font("Tahoma", Font.BOLD, 13));
+		txtPrecio3.setColumns(10);
+		txtPrecio3.setBounds(539, 532, 65, 20);
+		contentPane.add(txtPrecio3);
+		
+		setResizable(false);
+		this.setLocationRelativeTo(null);
+	}
+	void prGato1(){
+		cantPr1 = txtCamaGatos.getText();
+		if((cantPr1.matches("[0-9]{1,2}"))){
+			valorpr1 = true;
+			if(valorpr1 == true){
+				totalprG1 = prGato1 * Float.parseFloat(cantPr1);
+			}
+		}
+		else{
+			 JOptionPane.showMessageDialog(null, "Coloca la cantidad correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	void prGato2(){
+		cantPr2 = txtCañaGatos.getText();
+		if((cantPr2.matches("[0-9]{1,2}"))){
+			valorpr2 = true;
+			if(valorpr2 == true){
+				totalprG2 = prGato2 * Float.parseFloat(cantPr2);
+			}
+		}
+		else{
+			 JOptionPane.showMessageDialog(null, "Coloca la cantidad correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	void prGato3(){
+		cantPr3 = txtPelotasGatos.getText();
+		if((cantPr3.matches("[0-9]{1,2}"))){
+			valorpr3 = true;
+			if(valorpr3 == true){
+				totalprG3 = prGato3 * Float.parseFloat(cantPr3);
+			}
+		}
+		else{
+			 JOptionPane.showMessageDialog(null, "Coloca la cantidad correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	void prGato4(){
+		cantPr4 = txtRatonesParaGatos.getText();
+		if((cantPr4.matches("[0-9]{1,2}"))){
+			valorpr4 = true;
+			if(valorpr4 == true){
+				totalprG4 = prGato4 * Float.parseFloat(cantPr4);
+			}
+		}
+		else{
+			 JOptionPane.showMessageDialog(null, "Coloca la cantidad correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+}

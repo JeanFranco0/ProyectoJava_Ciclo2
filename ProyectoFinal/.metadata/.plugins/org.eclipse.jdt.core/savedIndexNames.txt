@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+D:\Proyecto Final De Investigacion 2022_2\ProyectoFinal\.metadata\.plugins\org.eclipse.jdt.core
+2179537226.index
+4058372610.index
+1865797976.index

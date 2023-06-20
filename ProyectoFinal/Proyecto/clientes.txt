@@ -1,0 +1,10 @@
+1001;Carlos Ramon;Juarez Orbegoso;Carlos123@gmail.com;973852104;04239547;carlos300
+1002;Luis Francisco;Garcia Hyundai;Luisito@gmail.com;900800700;07554084;luis200
+1003;Pedro Castillo;Audi Perez;Pedro2@gmail.com;999888777;82661732;audi22
+1004;Luisa Andres;Kia Fernandez;luisa33@gmail.com;987654321;06779523;kiafer22
+1005;Melissa Fabiola;Huaman Ferrari;ferrari0@gmail.com;910557299;10026348;ferrari33
+1006;Franco David;Tesla Quispe;tesla22@gmail.com;925731670;17399243;tesla1
+1007;Naomi Karla;Mamani Totoya;totoya0@gmail.com;995375241;1524758;totoyaW
+1008;Maria del Carmen;Romero Nissan;nissan@gmail.com;973091126;12149894;nissita23
+1009;Roberto Andre;Chois de Mendo;choismendo@gmail.com;902854127;524115;mendoandre
+1010;Luis Francisco;Atuncar Guzman;guzman2@gmail.com;933583248;01450128;guzmancito
